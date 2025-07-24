@@ -1,0 +1,15 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    <ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link {{ url == [base_url, "/image"]|join ? "active" }}" aria-current="page" href="{{ base_url }}/image">Image</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ url == [base_url, "/info"]|join ? "active" }}" aria-current="page" href="{{ base_url }}/info">Description</a>
+    </li>
+    </ul>
+    {% block object_content %}
+    {% endblock %}
+{% endblock %}

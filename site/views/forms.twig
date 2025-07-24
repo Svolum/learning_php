@@ -1,0 +1,16 @@
+{% macro input(name = 'text', value = '', type = 'text', placeholder = '', id = '', class = '') %}
+    <input 
+        type="{{ type }}" 
+        name="{{ name }}" 
+        value="{{ value }}" 
+        {% if placeholder %}placeholder="{{ placeholder }}"{% endif %} 
+        {% if id %}id="{{ id }}"{% endif %} 
+        {% if class %}class="{{ class }}"{% endif %}
+    >
+{% endmacro %}
+{# {{ _self.input('name', 'value', 'text', 'Enter your name', 'user-id', 'form-control') }} #}
+
+{% macro btn(text, url, is_active = false, color='primary') %}
+    <a href="{{ url }}" class="btn btn-{{ is_active?color:"link" }}">{{ text }}</a>
+{% endmacro %}
+{# {{ forms.btn('Текст на кнопке', 'my_url', true, 'warning') }} #}

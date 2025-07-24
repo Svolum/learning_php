@@ -1,0 +1,40 @@
+{% extends "__layout.twig" %}
+{% import "forms.twig" as forms %}
+
+{% block content %}
+    <ul class="list-group mt-2">
+
+        {% for item in menu|slice(1) %}
+            <li class="list-group-item">
+                {{ forms.btn(item.title, item.url, true) }}
+                {{ forms.btn('Image', item.url ~ '/image', false) }}
+                {{ forms.btn('Description', item.url ~ '/info', false) }}
+            </li>
+        {% endfor %}
+
+    </ul>
+    
+
+    <div class="container">
+        <div class="row">
+            {% for company in oil_comps %}
+                <div class="col-3">
+                    <div class="card h-100 w-100">
+                        <img src="{{ company.image }}" class="card-img-top card-img-square" alt="Изображение">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ company.title }}</h5>
+                            <p class="card-text"> {{ company.description }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="#" class="btn btn-primary d-block mb-3 main-link">Основная ссылка</a>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <a href="#" class="btn btn-primary me-md-2">картинка</a>
+                                <a href="#" class="btn btn-outline-secondary">описание</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
