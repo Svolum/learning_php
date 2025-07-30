@@ -2,19 +2,6 @@
 {% import "forms.twig" as forms %}
 
 {% block content %}
-    <ul class="list-group mt-2">
-
-        {% for item in menu|slice(1) %}
-            <li class="list-group-item">
-                {{ forms.btn(item.title, item.url, true) }}
-                {{ forms.btn('Image', item.url ~ '/image', false) }}
-                {{ forms.btn('Description', item.url ~ '/info', false) }}
-            </li>
-        {% endfor %}
-
-    </ul>
-    
-
     <div class="container">
         <div class="row">
             {% for company in oil_comps %}
@@ -26,10 +13,10 @@
                             <p class="card-text"> {{ company.description }}</p>
                         </div>
                         <div class="card-footer bg-transparent">
-                            <a href="#" class="btn btn-primary d-block mb-3 main-link">Основная ссылка</a>
+                            <a href="{{ company.id }}" class="btn btn-primary d-block mb-3 main-link">Основная ссылка</a>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <a href="#" class="btn btn-primary me-md-2">картинка</a>
-                                <a href="#" class="btn btn-outline-secondary">описание</a>
+                                <a href="{{ company.id }}/image" class="btn btn-primary me-md-2">картинка</a>
+                                <a href="{{ company.id }}/info" class="btn btn-outline-secondary">описание</a>
                             </div>
                         </div>
                     </div>
@@ -37,4 +24,5 @@
             {% endfor %}
         </div>
     </div>
+    
 {% endblock %}

@@ -11,7 +11,7 @@ class TwigBaseController extends BaseController {
     // это кстати Dependency Injection называется
     // это лучше чем создавать глобальный объект $twig 
     // и быстрее чем создавать персональный $twig обработчик для каждого класс
-    public function __construct($twig) {
+    public function setTwig($twig) {
         $this->twig = $twig;
     }
     public function getContext(): array {
@@ -39,6 +39,9 @@ class TwigBaseController extends BaseController {
     // функция гет, рендерит результат используя $template в качестве шаблона
     // и вызывает функцию getContext для формирования словаря контекста
     public function get() {
+        if ($this->template == ""){
+            print_r("<h2>template is not set</h2>");
+        }
         echo $this->twig->render($this->template, $this->getContext());
     }
 }

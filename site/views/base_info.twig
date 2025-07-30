@@ -1,7 +1,5 @@
 {% extends "__object.twig" %}
 
 {% block object_content %}
-<p>
-    {{ info }}
-</p>
+    {{ company.info|raw }} <!-- риск xss атак (из-за raw, который убирает кавычки) -->
 {% endblock %}
