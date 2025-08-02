@@ -6,16 +6,15 @@ class ObjectController extends BaseOilTypesTwigController {
     public $context = [];
     public function __construct()
     {
-        $url = $_SERVER['REQUEST_URI'];
-
-
-        // TEMPLATE
+        //      TEMPLATE
         $this->template = "__object.twig";
-        if (preg_match("#/image$#", $url)) {
-            $this->template = "base_image.twig";
-        }
-        else if (preg_match("#/info$#", $url)) {
-            $this->template = "base_info.twig";
+        if (isset($_GET['show'])) {
+            if ($_GET['show'] == 'image') {
+                $this->template = "base_image.twig";
+            }
+            else if ($_GET['show'] == 'info') {
+                $this->template = "base_info.twig";
+            }
         }
     }
     public function getContext(): array {
