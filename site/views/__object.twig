@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>{{ company.title }}</h1>
+    <p>{{ company.description }}</p>
     <ul class="nav nav-pills">
     <li class="nav-item">
         <a class="nav-link {{ url == base_url ~ '/image' ? 'active' }}" aria-current="page" href="{{ base_url }}/image">Image</a>

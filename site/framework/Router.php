@@ -39,14 +39,16 @@ class Router extends Route {
     // функция которая должна по url найти маршрут и вызывать его функцию get
     // если маршрут не найден, то будет использоваться контроллер по умолчанию
     public function get_or_default($default_controller) {
-        $url = $_SERVER["REQUEST_URI"]; // получили url
+        $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH); // получили url
 
         // фиксируем в контроллер $default_controller
         $controller = $default_controller;
+
         // проходим по списку $routes 
+        $matches = [];
         foreach($this->routes as $route) {
             // проверяем подходит ли маршрут под шаблон
-            if (preg_match($route->route_regexp, $url)) {
+            if (preg_match($route->route_regexp, $url, $matches)) {
                 // если подходит, то фиксируем привязанные к шаблону контроллер 
                 $controller = $route->controller;
                // и выходим из цикла
@@ -58,12 +60,9 @@ class Router extends Route {
         $controllerInstance = new $controller();
 
 
-        // передаем в него pdo
+        // передаем в него pdo и params
         $controllerInstance->setPDO($this->pdo);
-        if ($controllerInstance instanceof ObjectController) {
-            $controllerInstance->addContext('url', $url);
-            $controllerInstance->pullContextFromDB();
-        }
+        $controllerInstance->setParams($matches);
 
         // проверяем не является ли controllerInstance наследником TwigBaseController
         // и если является, то передает в него twig

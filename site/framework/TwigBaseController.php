@@ -18,22 +18,6 @@ class TwigBaseController extends BaseController {
         $context = parent::getContext();
         $context['title'] = $this->title;
 
-        // Menu
-        $context['menu'] = [
-            [
-                "title" => "Main page",
-                "url" => "/"
-            ],
-            [
-                "title" => "Lukoil",
-                "url" => "/lukoil"
-            ],
-            [
-                "title" => "British petrolium",
-                "url" => "/british-petrolium"
-            ]
-        ];
-
         return $context;
     }
     // функция гет, рендерит результат используя $template в качестве шаблона

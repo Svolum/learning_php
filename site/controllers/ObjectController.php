@@ -2,50 +2,51 @@
 require '../vendor/autoload.php';
 
 
-class ObjectController extends TwigBaseController {
+class ObjectController extends BaseOilTypesTwigController {
     public $context = [];
-    public $id = null;
     public function __construct()
     {
         $url = $_SERVER['REQUEST_URI'];
-        
-        // ID
-        preg_match("#^/(\d+)#", $url, $match);
-        $this->id = $match[1];
-        $this->context['base_url'] = "/$this->id";
+
 
         // TEMPLATE
         $this->template = "__object.twig";
         if (preg_match("#/image$#", $url)) {
-            // print_r("image");
             $this->template = "base_image.twig";
         }
-        if (preg_match("#/info$#", $url)) {
-            // print_r("info");
+        else if (preg_match("#/info$#", $url)) {
             $this->template = "base_info.twig";
         }
     }
     public function getContext(): array {
         $context = parent::getContext();
 
-        $context = array_merge($context, $this->context);
+        $context['url'] = $_SERVER["REQUEST_URI"];
+        $context['base_url'] = $this->params[0];
 
-        return $context;
-    }
-    public function addContext($field_name, $field_value) {
-        $this->context[$field_name] = $field_value;
-    }
-    public function pullContextFromDB(){
-        $query = $this->pdo->query("SELECT * FROM oil_comps WHERE id = $this->id");
-        $this->context['company'] = $query->fetchObject();
+        
+        //      SERTAIN COMPANY
+        // $query = $this->pdo->query("SELECT * FROM oil_comps WHERE id = " . $this->params['id']);
+        $query = $this->pdo->prepare("SELECT * FROM oil_comps WHERE id = :my_id");
+        $query->bindValue("my_id", $this->params['id']);
+        $query->execute();
+        $context['company'] = $query->fetch();
+
 
         //      MURKDOWN PARSER
-        $markdown = $this->context['company']->info;
+        $markdown = $context['company']['info'];
         $parsedown = new Parsedown();
-        $this->context['company']->info = $parsedown->text($markdown);
+        $context['company']['info'] = $parsedown->text($markdown);
 
         // INSERT oil_comps TO context FOR __layout.twig
         $query = $this->pdo->query("SELECT id, title FROM oil_comps");
-        $this->context['oil_comps'] = $query->fetchAll();
+        $context['oil_comps'] = $query->fetchAll();
+        
+
+        // echo "<pre>";
+        // print_r($context);
+        // echo "</pre>";
+
+        return $context;
     }
 }

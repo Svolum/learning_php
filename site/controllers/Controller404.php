@@ -1,5 +1,5 @@
 <?php
-class Controller404 extends TwigBaseController {
+class Controller404 extends BaseOilTypesTwigController {
     public $template = "404.twig";
     public $title = 'Page not found';
 

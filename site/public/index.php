@@ -32,22 +32,12 @@ $twig = new \Twig\Environment($loader, [
 ]);
 $twig->addExtension(new \Twig\Extension\DebugExtension()); // включить debug режим
 
-//      MURKDOWN PARSER
-// require '../vendor/autoload.php';
-// $markdown = "# Hello, Markdown!\nThis is a **test**.";
-// $parsedown = new Parsedown();
-// echo $parsedown->text($markdown);
 
 //      ROUTER
 $router = new Router($twig, $pdo);
 $router->add("#^/$#", MainController::class);
-// $router->add("#^/lukoil$#", ObjectController::class);
-
-$query = $pdo->query("SELECT id FROM oil_comps");
-$ids = $query->fetchAll();
-foreach ($ids as $id) {
-    $router->add("#^/".$id[0]."#", ObjectController::class);
-    // print_r($id[0]);
-}
+$router->add("#^/oil-company/(?P<id>\d+)#", ObjectController::class);
+// preg_match("/oil-company/(\d+)", $_SERVER['REQUEST_URI'], $match);
+// echo "lol".$match;
 
 $router->get_or_default(Controller404::class);
