@@ -1,0 +1,28 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+
+поиск
+
+<form action="">
+    <select name="type" id="">
+        <option value="all">Все</option>
+        {% for type in types %}
+            <option value="{{ type.type }}">{{ type.type|title }}</option>
+        {% endfor %}
+        <!-- <option value="rus">Rus</option> -->
+    </select>
+    <label>Название <input type="text" name="title"></label>
+    <label>информация <input type="text" name="info"></label>
+
+    <button type="submit">найти</button>
+</form>
+<ul class="list-group">
+    {% for oil_comp in oil_comps %}
+        <ol class="list-group-item">
+            <a href="{{ url_group }}{{ oil_comp.id }}">{{ oil_comp.title }}</a>
+        </ol>
+    {% endfor %}
+</ul>
+
+{% endblock %}

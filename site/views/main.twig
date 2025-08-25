@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             {% for company in oil_comps %}
-                <div class="col-3">
+                <div class="col-3 cartochka">
                     <div class="card h-100 w-100">
                         <img src="{{ company.image }}" class="card-img-top card-img-square" alt="Изображение">
                         <div class="card-body text-center">
@@ -15,8 +15,8 @@
                         <div class="card-footer bg-transparent">
                             <a href="{{ url_group }}{{ company.id }}" class="btn btn-primary d-block mb-3 main-link">Основная ссылка</a>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <a href="{{ url_group }}{{ company.id }}/image" class="btn btn-primary me-md-2">картинка</a>
-                                <a href="{{ url_group }}{{ company.id }}/info" class="btn btn-outline-secondary">описание</a>
+                                <a href="{{ url_group }}{{ company.id }}?show=image" class="btn btn-primary me-md-2">картинка</a>
+                                <a href="{{ url_group }}{{ company.id }}?show=info" class="btn btn-outline-secondary">описание</a>
                             </div>
                         </div>
                     </div>

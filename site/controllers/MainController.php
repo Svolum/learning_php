@@ -1,4 +1,5 @@
 <?php
+// класс контроллер, для организации страницы, по корневому адресу "/"
 class MainController extends BaseOilTypesTwigController {
     public $template = "main.twig";
     public $title = "Main page";

@@ -37,6 +37,7 @@ $twig->addExtension(new \Twig\Extension\DebugExtension()); // включить d
 $router = new Router($twig, $pdo);
 $router->add("#^/$#", MainController::class);
 $router->add("#^/oil-company/(?P<id>\d+)#", ObjectController::class);
+$router->add("#^/search#", SearchController::class);
 // preg_match("/oil-company/(\d+)", $_SERVER['REQUEST_URI'], $match);
 // echo "lol".$match;
 
