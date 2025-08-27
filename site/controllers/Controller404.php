@@ -1,6 +1,6 @@
 <?php
 // класс контроллер, для организации страницы 404
-class Controller404 extends BaseOilTypesTwigController {
+class Controller404 extends TwigBaseController {
     public $template = "404.twig";
     public $title = 'Page not found';
 

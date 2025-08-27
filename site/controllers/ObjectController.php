@@ -20,6 +20,7 @@ class ObjectController extends BaseOilTypesTwigController {
         }
     }
     public function getContext(): array {
+        
         $context = parent::getContext();
 
         $context['url'] = $_SERVER["REQUEST_URI"];

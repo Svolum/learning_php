@@ -21,7 +21,7 @@ class Router extends Route {
      */
     protected $routes = []; // создаем поле -- список под маршруты и привязанные к ним контроллеры
 
-    protected $twig; // переменные под twig и pdo
+    protected $twig; // переменные под twig кдасс и pdo
     protected $pdo;
 
     // конструктор

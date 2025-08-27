@@ -3,7 +3,7 @@
 ?Не до конца понимаю зачем мне столько прослоек между базовым классом и реализующими, но вероятно для обчения сойдет, хотя я сильно путяюсь\
 добавляются переменные необходимые для непосредственного отображния страницы как например шаблон
 */
-require_once "BaseController.php";
+// require_once "BaseController.php";
 
 class TwigBaseController extends BaseController {
     public $title = "";

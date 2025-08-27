@@ -1,0 +1,27 @@
+{% extends "__layout.twig" %}
+{% import "forms.twig" as forms %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for book in books_list %}
+        <div class="col-3 cartochka">
+            <div class="card h-50 w-100">
+                <!-- <img src="{{ book.image }}" class="card-img-top card-img-square" alt="обложка книги(по идее)"> -->
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"> {{ book.description }}</p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_group }}{{ book.id }}" class="btn btn-primary d-block mb-3 main-link">click!</a>
+                    <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="{{ url_group }}{{ book.id }}?show=image" class="btn btn-primary me-md-2">картинка</a>
+                        <a href="{{ url_group }}{{ book.id }}?show=info" class="btn btn-outline-secondary">описание</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

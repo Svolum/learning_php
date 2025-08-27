@@ -14,5 +14,12 @@ spl_autoload_register(function($class) {
         if (file_exists($fn)) {
             require_once $fn; 
         }
+    //      Подключает классы из папки BookControllers
+        else {
+            $fn = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . "BookControllers" .  DIRECTORY_SEPARATOR . $class . '.php';
+            if (file_exists($fn)) {
+                require_once $fn; 
+            }
+        }
     }
 });
