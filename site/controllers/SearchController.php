@@ -1,7 +1,7 @@
 <?php
 // класс контроллер, для поддержки какого-то поиска с множеством условий
 
-class SearchController extends BaseOilTypesTwigController {
+class SearchController extends BaseOilCompsTwigController {
     public $template = "search.twig";
     public $title = "поиск?";
 

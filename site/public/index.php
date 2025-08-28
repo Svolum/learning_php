@@ -2,12 +2,9 @@
 
 // подключаем пакеты которые установили через composer
 require_once '../vendor/autoload.php';
-//
 require_once '../framework/autoload.php';
-// Контроллер's
-require_once '../controllers/MainController.php';
-require_once '../controllers/Controller404.php';
-require_once '../controllers/ObjectController.php';
+// JavaScript
+
 
 
 ///     DB
@@ -37,6 +34,7 @@ $twig->addExtension(new \Twig\Extension\DebugExtension()); // включить d
 $router = new Router($twig, $pdo);
 $router->add("#^/$#", MainController::class);
 $router->add("#^/oil-company/(?P<id>\d+)#", ObjectController::class);
+$router->add("#^/oil-company/create$#", OilCompCreateController::class);
 $router->add("#^/search#", SearchController::class);
 $router->add("#^/books$#", BookListController::class);
 $router->add("#^/book/(?P<id>\d+)$#", BookReadController::class);

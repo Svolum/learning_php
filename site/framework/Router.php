@@ -72,6 +72,6 @@ class Router extends Route {
         }
 
         // вызываем
-        return $controllerInstance->get();
+        return $controllerInstance->process_responce();
     }
 }

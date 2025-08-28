@@ -1,6 +1,6 @@
 <?php
 // класс контроллер, для организации страницы, по корневому адресу "/"
-class MainController extends BaseOilTypesTwigController {
+class MainController extends BaseOilCompsTwigController {
     public $template = "main.twig";
     public $title = "Main page";
 
@@ -20,7 +20,8 @@ class MainController extends BaseOilTypesTwigController {
         $context['oil_comps'] = $query->fetchAll();
 
 
-        $context['url_group'] = '/oil-company/';
+        $context['url_groups'][] = '/oil-company/';
+        $context['url_groups'][] = '/books/';
         
         return $context;
     }

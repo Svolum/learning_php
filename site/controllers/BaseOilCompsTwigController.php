@@ -1,6 +1,6 @@
 <?php
 // класс контроллер, для отображения страницы конкретно нефтяной компании
-class BaseOilTypesTwigController extends TwigBaseController {
+class BaseOilCompsTwigController extends TwigBaseController {
     public function getContext(): array
     {
         $context = parent::getContext();

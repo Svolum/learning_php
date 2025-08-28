@@ -4,7 +4,7 @@
 require '../vendor/autoload.php';
 
 
-class ObjectController extends BaseOilTypesTwigController {
+class ObjectController extends BaseOilCompsTwigController {
     public $context = [];
     public function __construct()
     {
