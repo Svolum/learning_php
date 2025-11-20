@@ -7,12 +7,6 @@ services:
       dockerfile: php/Dockerfile
     volumes:
       - ./site:/var/www/html
-#    environment:
-#      DB_HOST: mariadb  # Имя сервиса в Docker Compose
-#      DB_PORT: 3306
-#      DB_NAME: app_db   # Как в MYSQL_DATABASE
-#      DB_USER: root     # Как в MYSQL_ROOT_PASSWORD
-#      DB_PASSWORD: root
     depends_on:
       - mariadb
     networks:
@@ -60,3 +54,5 @@ volumes:
 networks:
   app-network:
     driver: bridge
+
+

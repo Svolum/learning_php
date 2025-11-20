@@ -9,6 +9,8 @@ class BaseOilCompsTwigController extends TwigBaseController {
         $query = $this->pdo->query("SELECT DISTINCT type FROM oil_comps ORDER BY 1");
         // стягиваем данные и создаем глобальную переменную в $twig, которая будет достпна из любого шаблона
         $context['types'] = $query->fetchAll();
+        
+        $context['url_group'] = '/oil-company/';
 
         return $context;
     }

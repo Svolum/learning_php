@@ -4,9 +4,9 @@ class Controller404 extends TwigBaseController {
     public $template = "404.twig";
     public $title = 'Page not found';
 
-    public function get()
+    public function get(array $context)
     {
         http_response_code(404);
-        parent::get();
+        parent::get($context);
     }
 }

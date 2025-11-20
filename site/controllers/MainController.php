@@ -18,10 +18,6 @@ class MainController extends BaseOilCompsTwigController {
         }
         
         $context['oil_comps'] = $query->fetchAll();
-
-
-        $context['url_groups'][] = '/oil-company/';
-        $context['url_groups'][] = '/books/';
         
         return $context;
     }

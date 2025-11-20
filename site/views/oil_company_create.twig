@@ -4,6 +4,13 @@
     <h1>Добавление нефт.-компании в список</h1>
     <hr>
 
+    {% if message %}
+    <div class="alert alert-info">
+        {{ message }}
+        <a href="{{ url_group }}{{ id }}">открыть новый объект</a>
+    </div>
+    {% endif %}
+
     <form action="" method="POST" class="row g-3">
         <div class="col-4">
             <label class="form-label">Название</label>

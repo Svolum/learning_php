@@ -45,10 +45,6 @@ class ObjectController extends BaseOilCompsTwigController {
         $context['oil_comps'] = $query->fetchAll();
         
 
-        // echo "<pre>";
-        // print_r($context);
-        // echo "</pre>";
-
         return $context;
     }
 }

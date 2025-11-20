@@ -22,12 +22,13 @@ abstract class BaseController {
     // тот обязан переопределить этот метод
     public function process_responce(){
         $method =  $_SERVER['REQUEST_METHOD'];
+        $context = $this->getContext();
         if ($method == 'GET'){
-            $this->get();
+            $this->get($context);
         } else if ($method == 'POST'){
-            $this->post();
+            $this->post($context);
         }
     }
-    public function get() {}
-    public function post() {}
+    public function get(array $context) {}
+    public function post(array $context) {}
 }

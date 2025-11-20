@@ -13,7 +13,7 @@ $dbname = 'my_bd';
 $user = 'root';
 $password = 'root';
 $port = '3306';
-$pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
+$pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $password, $user);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
