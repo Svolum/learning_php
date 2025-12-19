@@ -25,9 +25,13 @@
                             <button class="btn btn-danger" type="submit" name="id" value="{{ company.id }}">
                                 <i class="fas fa-times"></i>
                             </button>
-                            <!-- <button class="btn btn-danger" type="submit">
-                                <i class="fas fa-times"></i>
-                            </button> -->
+                        </form>
+                    </div>
+                    <div class="position-absolute" style="left: 4px; top: 4px">
+                        <form action="/oil-company/update/{{company.id}}" method="GET">
+                            <button class="btn btn-primary" type="submit"">
+                                <i >edit</i>
+                            </button>
                         </form>
                     </div>
                 </div>

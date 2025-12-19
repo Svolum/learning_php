@@ -36,6 +36,7 @@ $router->add("#^/$#", MainController::class);
 $router->add("#^/oil-company/(?P<id>\d+)#", ObjectController::class);
 $router->add("#^/oil-company/create$#", OilCompCreateController::class);
 $router->add("#^/oil-company/delete$#", OilCompDeleteController::class);
+$router->add("#^/oil-company/update/(?P<id>\d+)#", OilCompUpdateController::class);
 $router->add("#^/search#", SearchController::class);
 $router->add("#^/books$#", BookListController::class);
 $router->add("#^/book/(?P<id>\d+)$#", BookReadController::class);
