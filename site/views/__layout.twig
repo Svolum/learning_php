@@ -47,6 +47,19 @@
                         </li>
                     {% endfor %}
                 </ul>
+
+
+
+                
+                {% if session.is_logged %}
+                    <form action="/logout" method="POST" style="display:inline">
+                        <button type="submit" class="btn btn-danger">Выйти</button>
+                    </form>
+                {% endif %}
+
+
+
+
             </div>
         </div>
     </nav>
