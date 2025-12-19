@@ -1,4 +1,5 @@
 <?php
+// session_start();
 
 // подключаем пакеты которые установили через composer
 require_once '../vendor/autoload.php';
@@ -32,13 +33,13 @@ $twig->addExtension(new \Twig\Extension\DebugExtension()); // включить d
 
 //      ROUTER
 $router = new Router($twig, $pdo);
-$router->add("#^/$#", MainController::class);
-$router->add("#^/oil-company/(?P<id>\d+)#", ObjectController::class);
-$router->add("#^/oil-company/create$#", OilCompCreateController::class);
-$router->add("#^/oil-company/delete$#", OilCompDeleteController::class);
-$router->add("#^/oil-company/update/(?P<id>\d+)#", OilCompUpdateController::class);
-$router->add("#^/search#", SearchController::class);
-$router->add("#^/books$#", BookListController::class);
-$router->add("#^/book/(?P<id>\d+)$#", BookReadController::class);
+$router->add("^/", MainController::class);
+$router->add("/oil-company/(?P<id>\d+)", ObjectController::class);
+$router->add("/oil-company/create", OilCompCreateController::class)->middleware(new LoginRequiredMidleware());
+$router->add("/oil-company/delete", OilCompDeleteController::class)->middleware(new LoginRequiredMidleware());
+$router->add("/oil-company/update/(?P<id>\d+)", OilCompUpdateController::class)->middleware(new LoginRequiredMidleware());
+$router->add("/search", SearchController::class);
+$router->add("/books", BookListController::class);
+$router->add("/book/(?P<id>\d+)", BookReadController::class);
 
 $router->get_or_default(Controller404::class);
