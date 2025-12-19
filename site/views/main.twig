@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             {% for company in oil_comps %}
-                <div class="col-3 cartochka">
+                <div class="col-3 cartochka position-relative">
                     <div class="card h-100 w-100">
                         <img src="{{ company.image }}" class="card-img-top card-img-square" alt="Изображение">
                         <div class="card-body text-center">
@@ -19,6 +19,16 @@
                                 <a href="{{ url_group }}{{ company.id }}?show=info" class="btn btn-outline-secondary">описание</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="position-absolute" style="right: 4px; top: 4px">
+                        <form action="/oil-company/delete" method="POST">
+                            <button class="btn btn-danger" type="submit" name="id" value="{{ company.id }}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <!-- <button class="btn btn-danger" type="submit">
+                                <i class="fas fa-times"></i>
+                            </button> -->
+                        </form>
                     </div>
                 </div>
             {% endfor %}

@@ -13,20 +13,18 @@ class OilCompCreateController extends BaseOilCompsTwigController {
         $type =         trim($_POST['type']);
         $info =         trim($_POST['info']);
 
+        $tmp_name = $_FILES['image']['tmp_name'];
+        $name =  $_FILES['image']['name'];
+        move_uploaded_file($tmp_name, "../public/media/$name");
+        $image_url = "/media/$name";
 
-        if (empty($title) || empty($description) || empty($type) || empty($info)) {
+        if (empty($title) || empty($description) || empty($type) || empty($info) || $type === "new") {
             $context['message'] = 'Поля не должны быть пустыми!';
             $this->get($context);
         }else {
-            // echo "<pre>";
-            // print_r($title);        echo "<br>";
-            // print_r($description);  echo "<br>";
-            // print_r($type);         echo "<br>";
-            // print_r($info);         echo "<br>";
-            // echo "</pre>";
             $sql = <<<EOL
 INSERT INTO oil_comps(title, description, type, info, image)
-VALUES(:title, :description, :type, :info, '')
+VALUES(:title, :description, :type, :info, :image_url)
 EOL;
 
             // подготавливаем запрос к БД
@@ -36,7 +34,8 @@ EOL;
             $query->bindValue("description", $description);
             $query->bindValue("type", $type);
             $query->bindValue("info", $info);
-            
+            $query->bindValue("image_url", $image_url);
+
             // выполняем запрос
             $query->execute();
 
